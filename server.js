@@ -36,9 +36,7 @@ server.use(logger);
 
 
 server.get('/', function(req, res){
-
-
-
+  res.sendFile('public/html/index.html', {root: __dirname});
 });
 
 
