@@ -16,12 +16,12 @@ function TodoController($scope, $http){
 $scope.saveTodo = function(){
   $http.post('/api/todos', $scope.newTodo)
   .then(function(response){
-    intTodos();
-    $scope.newTodos = {};
+    initTodos();
+    $scope.newTodo = {};
   })
   .catch(function(err){
-  console.err(err);
-});
+    console.err(err);
+  });
 }
     function initTodos(){
       $http.get('/api/todos')
