@@ -4,7 +4,13 @@
     <title> Welcome to MEAN Todos </title>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular.js'></script>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.css'/>
-  </head>
+
+<style>
+  body{
+    padding-top: 70px;
+  }
+  </style>
+   </head>
   <body ng-controller='TodoController'>
     <div class='container'>
       <form ng-submit="saveTodo()">
@@ -12,11 +18,11 @@
       <button type="submit">Save Todo</button>
     </form>
       <hr>
-        <div-ng-if='isEditing'>
+        <div ng-if='isEditing'>
           <input type="text" ng-model='editingTodo.desc'>
-          <button type= "save">Save</button>
+          <button type= "save" ng-click='updateTodo(editingTodo)'>Save</button>
         </div>
-
+    <ul></ul>
       <li ng-repeat="todo in todos">
       {{todo.desc}}
     <button type="button" class'btn btn-sm btn-danger'

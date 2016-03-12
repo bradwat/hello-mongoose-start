@@ -7,10 +7,10 @@ angular.module('todoApp') //this is the getter syntax, we can use this so we don
       .controller('TodoController', TodoController);
 
 TodoController.$inject = ['$scope', '$http'];
-
 function TodoController($scope, $http){
   $scope.todos = [];
   $scope.isEditing = false;
+
   initTodos();
 // create todo
 $scope.saveTodo = function(){
@@ -36,13 +36,23 @@ $scope.deleteTodo = function(todo){
 
 $scope.editTodo = function(todo){
   $scope.isEditing = !$scope.isEditingTodo
+  $scope.editingTodo = todo;
 }
 
+$scope.updateTodo = function(todo){
+  $http.put('/api/todos/'+todo._id, todo)
+      .then(function(response){
+        initTodos();
+        $scope.isEditing = false;
+      })
+      .catch(function(err){
+        console.log(err);
+      });
+}
     function initTodos(){
-      $http.get('/api/todos',+todo._id, todo)
+      $http.get('/api/todos')
           .then(function(response){
-            initTodos();
-            $scope.editingTodo=false;
+            $scope.todos = response.data;
           })
           .catch(function(err){
             console.err(err);
