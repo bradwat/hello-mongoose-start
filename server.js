@@ -5,7 +5,7 @@ var express = require('express'),
     Schema = mongoose.Schema,
     bodyParser = require('body-parser'),
     server  = express();
-
+    Todo = require('./models/todo.model.js');
     // Todo Model
     var todoSchema = new Schema ({
       desc: {
@@ -38,11 +38,6 @@ server.use(logger);
 server.get('/', function(req, res){
   res.sendFile('public/html/index.html', {root: __dirname});
 });
-
-
-
-
-
 
 
 server.get('/api/todos', function(req, res){
